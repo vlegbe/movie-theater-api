@@ -9,5 +9,8 @@ const Show = db.define("shows", {
     status: DataTypes.STRING,
 });
 
+
+
+
 //exports
 module.exports = { Show }
