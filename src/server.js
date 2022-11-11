@@ -3,19 +3,30 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const userRouter = require("./routes/user");
+const db = require("./db.js");
+const seed = require("./seed.js")
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.use(express.json());
+
+app.use("/user", userRouter);
+
+app.get('/seed', async (req, res) => {
+  await seed();
+  res.status(201).send('Initializing info about Users and Shows...')
 })
 // Only works on 3000 regardless of what I set environment port to or how I set [value] in app.set('port', [value]).
 app.listen(port, () => {
+  await db.sync();
   console.log(`App is listening on port ${port}`)
 })
+
+
 
 //router method
 const {Router} = require("express");
 const userRouter = Router();
-const User = require (../models/user)
+const User = require ('./models/user')
 
 
 userRouter.get("/", (req, res) => {})
@@ -48,4 +59,4 @@ router.get("/shows", (req, res) => {
 
 
 
-module.exports = {express}
+module.exports = {express, seed, }

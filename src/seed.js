@@ -4,7 +4,7 @@ const fs = require('fs').promises //helps us get access to promises when dealing
 
 //import our database [x]
 //import the model that we are trying to import our data into [x]
-const {db} = require('./db')
+const {db} = require('./db.js')
 const { Show, User } = require('./models/index')
 
 
@@ -14,7 +14,9 @@ const seed = async () => {
     await db.sync({ force: true }); // clear out database + tables
 
     const showSeedPath = path.join(__dirname, 'shows.json'); //get the path to Show.json file
-    const userSeedPath = path.join(__dirname, 'users.json')
+    const userSeedPath = path.join(__dirname, 'users.json');
+    const watchListPath = path.join(__dirname,'./movie_watchlist.sqlite')
+
 
 
     const buffer = await fs.readFile(showSeedPath); //asynchronously reads the content in this file
@@ -34,5 +36,11 @@ const seed = async () => {
     console.log("Shows and User database info populated!")
 }
 
+async function seedUsersShows() {
+
+}
+
+seed()
+
 //export my seed function
-module.exports = seed;
+module.exports = { seed };

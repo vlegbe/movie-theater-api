@@ -3,6 +3,9 @@ const {Router} = require("express");
 const userRouter = Router();
 const User = require ('../models/User')
 
+const user = await User.findByPk(User);
+res.send(await user.getShows())
+
 
 userRouter.get("/", (req, res) => {})
 userRouter.post("/", (req, res) => {})
