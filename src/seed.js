@@ -2,11 +2,12 @@
 const path = require('path') //helps us find our file easily
 const fs = require('fs').promises //helps us get access to promises when dealing with seeding data into our database
 
+
 //import our database [x]
 //import the model that we are trying to import our data into [x]
-const {db} = require('./db.js')
-const { Show, User } = require('./models/index')
-
+const {db} = require('./db/db.js')
+const { Show, User } = require('./index.js')
+const index = require('./server.js')
 
 //write our seed function -> take our json file, create rows with our data into it
 const seed = async () => {
@@ -36,9 +37,7 @@ const seed = async () => {
     console.log("Shows and User database info populated!")
 }
 
-async function seedUsersShows() {
 
-}
 
 seed()
 

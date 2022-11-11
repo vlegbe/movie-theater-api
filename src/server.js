@@ -16,7 +16,7 @@ app.get('/seed', async (req, res) => {
   res.status(201).send('Initializing info about Users and Shows...')
 })
 // Only works on 3000 regardless of what I set environment port to or how I set [value] in app.set('port', [value]).
-app.listen(port, () => {
+app.listen(port, async() => {
   await db.sync();
   console.log(`App is listening on port ${port}`)
 })
